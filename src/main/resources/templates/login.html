@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Login | IBook Service</title>
+    <!-- Bootstrap core CSS -->
+    <link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
+    <link th:href="@{css/index.css}" rel="stylesheet">
+</head>
+<body class="text-center">
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+            <img class="mb-4" th:src="@{img/bootstrap-solid.svg}" alt="" width="72" height="72">
+            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+            <div class="row">
+                <p>New to IBook? <a href="/register" target="_self">Create an Account</a></p>
+
+            </div>
+            <form class="form-signin" th:action="@{/login}" th:object="${user}" method="post">
+                <label class="sr-only">Username</label>
+                <input type="text" id="userName" name="userName" class="form-control" placeholder="userName" required="true" autofocus="">
+                <label class="sr-only">Password</label>
+                <input type="password" id="password" name="password" class="form-control" placeholder="password" required="">
+                <div class="checkbox mb-3">
+                    <label><input type="checkbox" value="remember-me">Remember me</label>
+                </div>
+                <button class="btn btn-primary btn-purchase btn-block" type="submit">Sign in</button>
+                <p></p>
+                <div id="errorMsg" class="alert alert-danger text-center" style="display:none;" th:text="${session.errorMsg}!=null?'${session.errorMsg}'"></div>
+                <p class="mt-5 mb-3 text-muted">Copyright 2020@IBook System</p>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

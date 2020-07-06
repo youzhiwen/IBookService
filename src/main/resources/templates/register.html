@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Register | IBook Service</title>
+    <!-- Bootstrap core CSS -->
+    <link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
+    <link th:href="@{css/index.css}" rel="stylesheet">
+</head>
+<body class="text-center">
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+            <form class="form-signin" th:action="@{/register}" th:object="${user}" method="post">
+                <img class="mb-4" th:src="@{img/bootstrap-solid.svg}" alt="" width="72" height="72">
+                <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
+                <h2 class="h3 mb-3 font-weight-normal" th:text="${errorMessage}!=null?'Error Message: ' + ${errorMessage}"></h2>
+                <label class="sr-only">Username</label>
+                <input type="text" id="userName" name="userName" th:field="*{userName}" class="form-control" placeholder="userName" required="true" autofocus="">
+                <span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"  class="text-danger"></span>
+                <label class="sr-only">Email</label>
+                <input type="email" id="email" name="email" th:field="*{password}" class="form-control" placeholder="email" required="true">
+                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
+                <label class="sr-only">Password</label>
+                <input type="password" id="password" name="password" th:field="*{email}" class="form-control" placeholder="password" required="true">
+                <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"   class="text-danger"></span>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+                <a href="/login" class="btn btn-lg btn-primary btn-block">Login</a>
+                <p class="mt-5 mb-3 text-muted">© 2019-2020</p>
+
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
