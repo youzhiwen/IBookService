@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ComposeApplication {
+public class IBookApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ComposeApplication.class, args);
+        SpringApplication.run(IBookApplication.class, args);
     }
 }
