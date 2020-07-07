@@ -60,7 +60,7 @@ public class UserControllerTest{
 
     @Test
     void register() {
-        assertEquals("register",userController.register());
+        assertEquals("register",userController.register(null));
     }
 
     @Test

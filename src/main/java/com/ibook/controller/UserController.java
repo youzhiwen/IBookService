@@ -3,6 +3,7 @@ package com.ibook.controller;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import com.ibook.utils.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,7 +37,7 @@ public class UserController {
                         HttpSession session) {
 
         User loginUser = userRepository.findByUserNameOrEmail(user.getUserName(), user.getEmail());
-        if (loginUser != null && loginUser.getPassword().equals(user.getPassword())) {
+        if (loginUser != null && loginUser.getPassword().equals(MD5Util.encrypt(user.getPassword()))) {
             session.setAttribute("loginUser", loginUser);
         } else {
             session.setAttribute("errorMsg", "Authentication failed. You entered an incorrect username or password.");
@@ -46,7 +47,7 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String register() {
+    public String register(User user) {
         return "register";
     }
 
@@ -62,6 +63,7 @@ public class UserController {
         }
         user.setCreateTime(new Date());
         user.setUpdateTime(new Date());
+        user.setPassword(MD5Util.encrypt(user.getPassword()));
         userRepository.save(user);
         model.addAttribute("users", userRepository.findAll());
         session.setAttribute("loginUser", user);
